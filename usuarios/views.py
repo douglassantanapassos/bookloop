@@ -59,7 +59,7 @@ def lancar(request):
             return HttpResponse("Faça o login para acessar!")
     else:
         livro = Livro()
-        livro.nome_aluno = request.user.first_name
+        livro.nome_usuario = request.user.first_name
         livro.livro = request.POST.get('livro')
         livro.nome_autor = request.POST.get('nome_autor')
         livro.nome_genero = request.POST.get('nome_genero')
@@ -134,17 +134,15 @@ def editar_verificacao(request, pk):
 def editar(request, pk):
     if request.method == "POST":
         if request.user.is_authenticated:
-            nome_aluno = request.user.first_name
+            nome_usuario = request.user.first_name
             livro = request.POST.get('livro')
             nome_autor = request.POST.get('nome_autor')
             nome_genero = request.POST.get('nome_genero')
             nome_editora = request.POST.get('nome_editora')
             num_paginas = request.POST.get('num_paginas')
-            Livro.objects.filter(pk=pk).update(nome_aluno=nome_aluno, livro=livro, nome_autor=nome_autor, nome_genero=nome_genero, nome_editora=nome_editora, num_paginas=num_paginas)
+            Livro.objects.filter(pk=pk).update(nome_usuario=nome_usuario, livro=livro, nome_autor=nome_autor, nome_genero=nome_genero, nome_editora=nome_editora, num_paginas=num_paginas)
 
             return HttpResponseRedirect(reverse('alterar'))
         
     else:
         return HttpResponse("Faça o login para acessar!")
-
-
