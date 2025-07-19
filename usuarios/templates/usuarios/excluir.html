@@ -1,13 +1,13 @@
 {% extends 'usuarios/base.html'%}
 
-{% block aba %}Excluir Notas{%endblock%}
-{% block titulo %}Excluir Notas{%endblock%}
+{% block aba %}Excluir Livros{%endblock%}
+{% block titulo %}Excluir Livros{%endblock%}
 {% block conteudo %} 
 
-<h3>Exclusão de Notas Selecionada</h3>
+<h3>Exclusão de Livros Selecionado</h3>
 <hr>
 
-<p>Tem certeza que deseja excluir as notas da disciplina <strong>{{ lista_livros.livro}}</strong></p>
+<p>Tem certeza que deseja excluir esse livro <strong>{{ lista_livros.livro}}</strong></p>
 
 <div class="delete">
     <a href="{% url 'excluir' lista_livros.pk %}" class="btn btn-sucess btn-sm"> Sim</a>

@@ -69,7 +69,7 @@ def lancar(request):
         livro_verificado = Livro.objects.filter(livro=livro.livro).first()
 
         if livro_verificado:
-            return HttpResponse("Disciplina já possui notas cadastradas!")
+            return HttpResponse("Livro já cadastrado!")
         else:
             livro.save()
             return render( request, 'usuarios/home.html')
@@ -94,7 +94,7 @@ def visualizar(request):
             return HttpResponse("Faça o login para acessar!")
     else:
         livro = request.POST.get('livro')
-        if livro == "Todas as disciplinas":
+        if livro == "Todos os Livros":
             lista_livros = Livro.objects.all()
             dicionario_livros = {'lista_livros':lista_livros}
             return render(request, 'usuarios/visualizar.html', dicionario_livros)   

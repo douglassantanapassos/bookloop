@@ -20,6 +20,7 @@
                         <li class="nav-item"><a class="nav-link" href="#!">Sobre</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contado</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                        <li  class="nav-item">{{user.email}}</li>
                     </ul>
                 </div>
                 {% endblock %}
@@ -56,7 +57,7 @@
                     <div class="card h-100" style="background-color: #D3D3D3;">
                         <div class="card-body" style="background-color: #FFFFFF;">
                             <h2 class="card-title">Visualizar Livros</h2>
-                            <p class="card-text">Nesta opção você poderá visualizar todos os livros cadastrados</p>
+                            <p class="card-text">Nesta opção você poderá visualizar todos os livros cadastrados.</p>
                         </div>
                         <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'visualizar' %}">Clique aqui</a></div>
                     </div>

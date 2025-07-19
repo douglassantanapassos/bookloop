@@ -1,10 +1,10 @@
 {% extends 'usuarios/base.html'%}
 
-{% block aba %}Visualizar Notas{%endblock%}
-{% block titulo %}Visualizar Notas{%endblock%}
+{% block aba %}Visualizar Livros{%endblock%}
+{% block titulo %}Visualizar Livros{%endblock%}
 {% block conteudo %}
 <h3>
-    Visualização de notas registradas
+    Visualização de Livros registradas
 </h3>
 <hr>
 
@@ -12,9 +12,9 @@
     {% csrf_token%}
 
     <div class="filter">
-        <label for="nomeLivro"> Filtrar por disciplina:</label>
+        <label for="nomeLivro"> Filtrar por livro:</label>
         <select name="livro">
-            <option>Todas as disciplinas</option>
+            <option>Todas os livros</option>
             {% for campo in lista_livros %}
                 <option >{{ campo.livro }}</option>
             {% endfor %}
