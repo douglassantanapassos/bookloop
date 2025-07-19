@@ -78,46 +78,45 @@ def lancar(request):
 def alterar(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            lista_notas = Livro.objects.all()
-            dicionario_notas = {'lista_notas':lista_notas}
-            return render(request, 'usuarios/alterar.html', dicionario_notas)
+            lista_livros = Livro.objects.all()
+            dicionario_livros = {'lista_livros':lista_livros}
+            return render(request, 'usuarios/alterar.html', dicionario_livros)
         else:
             return HttpResponse("Faça o login para acessar!")
-
 
 def visualizar(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            lista_notas = Livro.objects.all()
-            dicionario_notas = {'lista_notas':lista_notas}
-            return render(request, 'usuarios/visualizar.html', dicionario_notas)
+            lista_livros = Livro.objects.all()
+            dicionario_livros = {'lista_livros':lista_livros}
+            return render(request, 'usuarios/visualizar.html', dicionario_livros)
         else:
             return HttpResponse("Faça o login para acessar!")
     else:
-        disciplina = request.POST.get('disciplina')
-        if disciplina == "Todas as disciplinas":
-            lista_notas = Livro.objects.all()
-            dicionario_notas = {'lista_notas':lista_notas}
-            return render(request, 'usuarios/visualizar.html', dicionario_notas)   
+        livro = request.POST.get('livro')
+        if livro == "Todas as disciplinas":
+            lista_livros = Livro.objects.all()
+            dicionario_livros = {'lista_livros':lista_livros}
+            return render(request, 'usuarios/visualizar.html', dicionario_livros)   
         else:
-            lista_notas = Livro.objects.filter(disciplina = disciplina)
-            discionario_notas_filtradas = {'lista_notas':lista_notas}
-            return render(request, 'usuarios/visualizar.html', discionario_notas_filtradas)
+            lista_livros = Livro.objects.filter(livro = livro)
+            discionario_livros_filtrados = {'lista_livros':lista_livros}
+            return render(request, 'usuarios/visualizar.html', discionario_livros_filtrados)
         
 def excluir_verificacao(request, pk):
     if request.method == "GET":
         if request.user.is_authenticated:
-            lista_notas = Livro.objects.get(pk=pk)
-            dicionario_notas  = {'lista_notas':lista_notas}
-            return render(request, 'usuarios/excluir.html', dicionario_notas)
+            lista_livros = Livro.objects.get(pk=pk)
+            dicionario_livros  = {'lista_livros':lista_livros}
+            return render(request, 'usuarios/excluir.html', dicionario_livros)
         else:
             return HttpResponse("Faça o login para acessar!")
         
 def excluir(request, pk):
     if request.method == "GET":
         if request.user.is_authenticated:
-            diciplina_selecionada = Livro.objects.get(pk=pk)
-            diciplina_selecionada.delete()
+            livro_selecionado = Livro.objects.get(pk=pk)
+            livro_selecionado.delete()
             return HttpResponseRedirect(reverse('alterar'))
         else:
             return HttpResponse("Faça o login para acessar!")
