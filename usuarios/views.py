@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django, logout as logout_django
-from .models import Nota
+from .models import Livro
 
 def login(request):
     if request.method == "GET":
@@ -58,27 +58,27 @@ def lancar(request):
         else:
             return HttpResponse("Faça o login para acessar!")
     else:
-        nota = Nota()
-        nota.nome_aluno = request.user.first_name
-        nota.disciplina = request.POST.get('disciplina')
-        nota.nota_atividade = request.POST.get('nota_atividade')
-        nota.nota_trabalho = request.POST.get('nota_trabalho')
-        nota.nota_prova = request.POST.get('nota_prova')
-        nota.media = int(nota.nota_atividade) + int(nota.nota_trabalho) + int(nota.nota_prova)
+        livro = Livro()
+        livro.nome_aluno = request.user.first_name
+        livro.livro = request.POST.get('livro')
+        livro.nome_autor = request.POST.get('nome_autor')
+        livro.nome_genero = request.POST.get('nome_genero')
+        livro.nome_editora = request.POST.get('nome_editora')
+        livro.num_paginas = request.POST.get('num_paginas')
 
-        nota_verificado = Nota.objects.filter(disciplina=nota.disciplina).first()
+        livro_verificado = Livro.objects.filter(livro=livro.livro).first()
 
-        if nota_verificado:
+        if livro_verificado:
             return HttpResponse("Disciplina já possui notas cadastradas!")
         else:
-            nota.save()
+            livro.save()
             return render( request, 'usuarios/home.html')
 
 
 def alterar(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            lista_notas = Nota.objects.all()
+            lista_notas = Livro.objects.all()
             dicionario_notas = {'lista_notas':lista_notas}
             return render(request, 'usuarios/alterar.html', dicionario_notas)
         else:
@@ -88,7 +88,7 @@ def alterar(request):
 def visualizar(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            lista_notas = Nota.objects.all()
+            lista_notas = Livro.objects.all()
             dicionario_notas = {'lista_notas':lista_notas}
             return render(request, 'usuarios/visualizar.html', dicionario_notas)
         else:
@@ -96,18 +96,18 @@ def visualizar(request):
     else:
         disciplina = request.POST.get('disciplina')
         if disciplina == "Todas as disciplinas":
-            lista_notas = Nota.objects.all()
+            lista_notas = Livro.objects.all()
             dicionario_notas = {'lista_notas':lista_notas}
             return render(request, 'usuarios/visualizar.html', dicionario_notas)   
         else:
-            lista_notas = Nota.objects.filter(disciplina = disciplina)
+            lista_notas = Livro.objects.filter(disciplina = disciplina)
             discionario_notas_filtradas = {'lista_notas':lista_notas}
             return render(request, 'usuarios/visualizar.html', discionario_notas_filtradas)
         
 def excluir_verificacao(request, pk):
     if request.method == "GET":
         if request.user.is_authenticated:
-            lista_notas = Nota.objects.get(pk=pk)
+            lista_notas = Livro.objects.get(pk=pk)
             dicionario_notas  = {'lista_notas':lista_notas}
             return render(request, 'usuarios/excluir.html', dicionario_notas)
         else:
@@ -116,7 +116,7 @@ def excluir_verificacao(request, pk):
 def excluir(request, pk):
     if request.method == "GET":
         if request.user.is_authenticated:
-            diciplina_selecionada = Nota.objects.get(pk=pk)
+            diciplina_selecionada = Livro.objects.get(pk=pk)
             diciplina_selecionada.delete()
             return HttpResponseRedirect(reverse('alterar'))
         else:
@@ -126,7 +126,7 @@ def excluir(request, pk):
 def editar_verificacao(request, pk):
     if request.method == "GET":
         if request.user.is_authenticated:
-            lista_notas = Nota.objects.get(pk=pk)
+            lista_notas = Livro.objects.get(pk=pk)
             dicionario_notas ={'lista_notas':lista_notas}
             return render(request, 'usuarios/editar.html', dicionario_notas)
     else:
@@ -141,7 +141,7 @@ def editar(request, pk):
             nota_trabalho = request.POST.get('nota_trabalho')
             nota_prova = request.POST.get('nota_prova')
             media = int(nota_atividade) + int(nota_trabalho) + int(nota_prova)
-            Nota.objects.filter(pk=pk).update(nome_aluno=nome_aluno, disciplina=disciplina, nota_atividade=nota_atividade, nota_trabalho=nota_trabalho, nota_prova=nota_prova, media=media)
+            Livro.objects.filter(pk=pk).update(nome_aluno=nome_aluno, disciplina=disciplina, nota_atividade=nota_atividade, nota_trabalho=nota_trabalho, nota_prova=nota_prova, media=media)
 
             return HttpResponseRedirect(reverse('alterar'))
         

@@ -12,21 +12,21 @@
     <table class="table table-striped"> 
         <tr>
             <th>Aluno</th>
-            <th>Disciplina</th>
-            <th>Nota das Atividades</th>
-            <th>Nota do Trabalho</th>
-            <th>Nota da Prova</th>
-            <th>Média</th>  
+            <th>Nome do Livro</th>
+            <th>Autor</th>
+            <th>Gênero</th>
+            <th>Editora</th>
+            <th>Número de Páginas</th>  
             <th>Opções</th>     
         </tr>
         {% for campo in lista_notas %}
             <tr>
                 <td>{{ user.first_name}}</td>
-                <td>{{campo.disciplina}}</td>
-                <td>{{campo.nota_atividade}}</td>
-                <td>{{campo.nota_trabalho}}</td>
-                <td>{{campo.nota_prova}}</td>
-                <td>{{campo.media}}</td>
+                <td>{{campo.livro}}</td>
+                <td>{{campo.nome_autor}}</td>
+                <td>{{campo.nome_genero}}</td>
+                <td>{{campo.nome_editora}}</td>
+                <td>{{campo.num_paginas}}</td>
                 <td>
                     <a href="{% url 'editar_verificacao' campo.pk %}" class="btn btn-warning btn-sm">Editar</a>
                     <a href="{% url 'excluir_verificacao' campo.pk %}" class="btn btn-danger btn-sm">Excluir</a>
