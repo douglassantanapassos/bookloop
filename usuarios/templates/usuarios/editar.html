@@ -1,40 +1,45 @@
 {% extends 'usuarios/base.html'%}
 
-{% block aba %}Editar Notas{%endblock%}
-{% block titulo %}Editar Notas{%endblock%}
+{% block aba %}Editar Livros{%endblock%}
+{% block titulo %}Editar Livros Cadastrados{%endblock%}
 {% block conteudo %}
-<h3>Idição da Nota Selecionada</h3>
+<h3>Idição de Livro Selecionado</h3>
 <p class = "lead">Verifique as informações cadastradas e faça as devidas edições.</p>
 <hr>
-<form action="{% url 'editar' lista_livros.pk %}" method="POST">
-    {% csrf_token %}
-    <div class="form-register">
-        <label for="userName">Nome: </label>
-        <label for="Name" style="font-weight: bold;">{{user.first_name}} </label>
-    </div>
-    <div class="form-register">
-        <label for="nomeLivro">Nome do Livro: </label>
-        <input type="text" id="nomeLivro" name="livro" value="{{lista_livros.livro}}">
-    </div>
-    <div class="form-register">
-        <label for="notaAtividade">Autor: </label>
-        <input type="text" id="notaAtividade" name="nota_atividade" value="{{lista_notas.nota_atividade}}">
-    </div>
-    <div class="form-register">
-        <label for="notaTrabalho">Gênero: </label>
-        <input type="text" id="notaTrabalho" name="nota_trabalho" value="{{lista_notas.nota_trabalho}}">
-    </div>
-    <div class="form-register">
-        <label for="notaProva">Editora: </label>
-        <input type="text" id="notaProva" name="nota_prova" value="{{lista_notas.nota_prova}}">
-    </div>
-    <div class="form-register">
-        <label for="notaProva">Número de Páginas: </label>
-        <input type="text" id="notaProva" name="nota_prova" value="{{lista_notas.nota_prova}}">
-    </div>
-    <div class="update">
-        <button type="submit" class="btn btn-success btn-sm">Atualizar</button>
-        <a href="{% url 'alterar'%}" class="btn btn-danger btn-sm">Voltar</a>
-    </div>
-</form>
+  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+          <div class="card-body p-4 p-sm-5">
+            <form action="{% url 'editar' lista_livros.pk %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3" style="text-align: center;"> 
+                        <label for="userName">Usuário: </label>
+                        <label for="Name" style="font-weight: bold;">{{user.first_name}} </label>
+                </div>
+                    
+                <div >
+                    <label for="nomeLivro">Nome do Livro: </label>
+                    <input type="text" class="form-control" id="floatingInput" name="livro" value="{{lista_livros.livro}}"> 
+                </div>
+                    
+                <div >
+                    <label for="nomeAutor">Autor: </label>
+                    <input type="text" class="form-control" id="floatingInput" name="nome_autor"  value="{{lista_livros.nome_autor}}">
+                </div>
+                <div >
+                    <label for="nomeGenero">Gênero: </label>
+                    <input type="text" class="form-control" id="floatingInput" name="nome_genero" value="{{lista_livros.nome_genero}}">
+                </div>
+                <div >
+                    <label for="nomeEditora">Editora: </label>
+                    <input type="text" class="form-control" id="floatingInput" name="nome_editora" value="{{lista_livros.nome_editora}}">
+                </div>
+                <div >
+                    <label for="numPaginas">Número de Páginas: </label>
+                    <input type="number" class="form-control" id="floatingInput" name="num_paginas" value="{{lista_livros.num_paginas}}">
+                </div>
+                <div class="update mt-3">
+                    <button type="submit" class="btn btn-success btn-sm">Atualizar</button>
+                    <a href="{% url 'alterar'%}" class="btn btn-danger btn-sm">Voltar</a>
+                </div>
+            </form>
 {% endblock %}

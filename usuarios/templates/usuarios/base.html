@@ -29,7 +29,7 @@
         <div class="container px-4 px-lg-5">
             <!-- Call to Action-->
             <div class="card text-white my-5 py-4 text-center" style="background-color: #006400;">
-                <div class="card-body"><p class="text-white m-0">{% block titulo %}Seja bem-vindo(a) ao portal de notas, aqui você encontrará todos os dados das suas disciplinas.{% endblock %}</p></div>
+                <div class="card-body"><p class="text-white m-0">{% block titulo %}Seja bem-vindo(a) ao portal BookLoop. Aqui você poderá cadastrar, editar e visualizar livros disponíveis para troca. Promova a leitura e a sustentabilidade!{% endblock %}</p></div>
             </div>
             <!-- Content Row-->
             <div class="row gx-4 gx-lg-5">
@@ -37,8 +37,8 @@
                 <div class="col-md-4 mb-5">
                     <div class="card h-100" style="background-color: #D3D3D3;">
                         <div class="card-body" style="background-color: #FFFFFF;">
-                            <h2 class="card-title">Lançar Notas</h2>
-                            <p class="card-text">Nesta opção você poderá lançar todas as notas referentes às suas disciplinas, discriminando todos os detalhes dos respectivos alunos.</p>
+                            <h2 class="card-title">Cadastrar Livros</h2>
+                            <p class="card-text">Nesta opção você poderá cadastrar novos livros, informando título, autor, gênero, editora e número de páginas. Torne seu acervo disponível para troca com outros leitores!</p>
                         </div>
                         <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'lancar' %}">Clique aqui</a></div>
                     </div>
@@ -46,8 +46,8 @@
                 <div class="col-md-4 mb-5">
                     <div class="card h-100" style="background-color: #D3D3D3;">
                         <div class="card-body" style="background-color: #FFFFFF;">
-                            <h2 class="card-title">Alterar Notas</h2>
-                            <p class="card-text">Nesta opção você poderá alterar todas as notas já lançadas referente às suas disciplinas, inclusive excluir alguma nota.</p>
+                            <h2 class="card-title">Alterar Livros</h2>
+                            <p class="card-text">Nesta opção você poderá editar os dados dos livros que já cadastrou, corrigindo informações. Mantenha sua estante sempre organizada.</p>
                         </div>
                         <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'alterar' %}">Clique aqui</a></div>
                     </div>
@@ -55,8 +55,8 @@
                 <div class="col-md-4 mb-5">
                     <div class="card h-100" style="background-color: #D3D3D3;">
                         <div class="card-body" style="background-color: #FFFFFF;">
-                            <h2 class="card-title">Visualizar Notas</h2>
-                            <p class="card-text">Nesta opção você poderá visualizar todas as notas já lançadas referente às suas disciplinas.</p>
+                            <h2 class="card-title">Visualizar Livros</h2>
+                            <p class="card-text">Nesta opção você poderá visualizar todos os livros cadastrados</p>
                         </div>
                         <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'visualizar' %}">Clique aqui</a></div>
                     </div>
@@ -66,7 +66,7 @@
         </div>
         <!-- Footer-->
         <footer class="fixed-bottom" style="background-color: #008000;">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Diário de Notas 2025</p></div>
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; BookLoop 2025</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

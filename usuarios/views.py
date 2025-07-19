@@ -125,9 +125,9 @@ def excluir(request, pk):
 def editar_verificacao(request, pk):
     if request.method == "GET":
         if request.user.is_authenticated:
-            lista_notas = Livro.objects.get(pk=pk)
-            dicionario_notas ={'lista_notas':lista_notas}
-            return render(request, 'usuarios/editar.html', dicionario_notas)
+            lista_livros = Livro.objects.get(pk=pk)
+            dicionario_livros ={'lista_livros':lista_livros}
+            return render(request, 'usuarios/editar.html', dicionario_livros)
     else:
         return HttpResponse("Faça o login para acessar!")
     
@@ -135,12 +135,12 @@ def editar(request, pk):
     if request.method == "POST":
         if request.user.is_authenticated:
             nome_aluno = request.user.first_name
-            disciplina = request.POST.get('disciplina')
-            nota_atividade = request.POST.get('nota_atividade')
-            nota_trabalho = request.POST.get('nota_trabalho')
-            nota_prova = request.POST.get('nota_prova')
-            media = int(nota_atividade) + int(nota_trabalho) + int(nota_prova)
-            Livro.objects.filter(pk=pk).update(nome_aluno=nome_aluno, disciplina=disciplina, nota_atividade=nota_atividade, nota_trabalho=nota_trabalho, nota_prova=nota_prova, media=media)
+            livro = request.POST.get('livro')
+            nome_autor = request.POST.get('nome_autor')
+            nome_genero = request.POST.get('nome_genero')
+            nome_editora = request.POST.get('nome_editora')
+            num_paginas = request.POST.get('num_paginas')
+            Livro.objects.filter(pk=pk).update(nome_aluno=nome_aluno, livro=livro, nome_autor=nome_autor, nome_genero=nome_genero, nome_editora=nome_editora, num_paginas=num_paginas)
 
             return HttpResponseRedirect(reverse('alterar'))
         
