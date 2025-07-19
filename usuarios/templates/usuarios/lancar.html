@@ -8,30 +8,35 @@
 <hr>
 <form action="{% url 'lancar' %}" method="POST">
     {% csrf_token %}
-    <div class="form-register">
+    <div class="card">
+     <div class="input-group mb-3"> 
         <label for="userName">Nome: </label>
         <label for="Name" style="font-weight: bold;">{{user.first_name}} </label>
     </div>
-    <div class="form-register">
-        <label for="nomeLivro">Nome do Livro: </label>
-        <input type="text" id="nomeLivro" name="livro">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="livro" />
+        <label for="nomeLivro">Nome do Livro</label>
     </div>
-    <div class="form-register">
-        <label for="nomeAutor">Autor: </label>
-        <input type="text" id="nomeAutor" name="nome_autor">
+    
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="nome_autor" />
+        <label for="nomeAutor">Autor: </label>        
     </div>
-    <div class="form-register">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="nome_genero" />
         <label for="nomeGenero">Gênero: </label>
-        <input type="text" id="nomeGenero" name="nome_genero">
     </div>
-    <div class="form-register">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="nome_editora" />
         <label for="nomeEditora">Editora: </label>
-        <input type="text" id="nomeEditora" name="nome_editora">
     </div>
-    <div class="form-register">
-        <label for="numPaginas">Número de Páginas: </label>
-        <input type="text" id="numPaginas" name="num_paginas">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="num_paginas" />
+        <label for="numPaginas">Número de Páginas: </label>        
     </div>
+    <div class="form-floating mb-3">
     <button type="submit" class="btn btn-primary">Registrar Notas</button>
+    </div>
+    </div> 
 </form>
 {% endblock %}
