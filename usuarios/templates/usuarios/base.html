@@ -30,9 +30,11 @@
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <!-- Call to Action-->
+            {% block container_titulo %}
             <div class="card text-white my-5 py-4 text-center " style="background-color: #0c98a5;"> 
                 <div class="card-body"><p class="text-white m-0">{% block titulo %}Seja bem-vindo(a) ao portal BookLoop. Aqui você poderá cadastrar, editar e visualizar livros disponíveis para troca. Promova a leitura e a sustentabilidade!{% endblock %}</p></div>
             </div>
+            {% endblock %}
             <!-- Content Row-->
             <div class="row gx-4 gx-lg-5">
                 {% block conteudo %}

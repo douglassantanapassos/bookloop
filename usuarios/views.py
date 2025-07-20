@@ -18,7 +18,7 @@ def login(request):
             login_django(request, user)
             return render(request, 'usuarios/home.html')
         else:
-            return HttpResponse('E-mail ou senha inválidos')
+            return render( request, 'usuarios/login.html')
         
 def logout(request):
     if request.user.is_authenticated:
@@ -30,6 +30,7 @@ def logout(request):
 def cadastro(request):
     if request.method == "GET":
         return render(request, 'usuarios/cadastro.html')
+    
     else:
         username = request.POST.get('email')
         email= request.POST.get('email')
@@ -40,6 +41,10 @@ def cadastro(request):
 
         if user:
             return HttpResponse("Usuário ja existente!")
+
+        elif username == "" and email=='' and password =='':            
+            return render( request, 'usuarios/cadastro.html')
+
         else:
             user = User.objects.create_user(username=username, email=email, password=password, first_name=first_name)
             user.save()
@@ -70,6 +75,8 @@ def lancar(request):
 
         if livro_verificado:
             return HttpResponse("Livro já cadastrado!")
+        elif livro.livro == '' and livro.nome_autor =='' and livro.nome_genero == '' and livro.nome_editora == '' and livro.num_paginas == '':            
+            return render( request, 'usuarios/lancar.html')
         else:
             livro.save()
             return render( request, 'usuarios/home.html')
