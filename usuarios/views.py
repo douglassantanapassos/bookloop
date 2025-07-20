@@ -25,7 +25,7 @@ def logout(request):
         logout_django(request)
         return render(request, 'usuarios/login.html')
     else:
-        return HttpResponse("Você não acessou sua conta ainda!")
+        return render( request, 'usuarios/login.html')
         
 def cadastro(request):
     if request.method == "GET":
@@ -49,14 +49,14 @@ def home(request):
     if request.user.is_authenticated:
         return render(request, 'usuarios/home.html')
     else:
-        return HttpResponse("Faça o login para acessar!")
+        return render( request, 'usuarios/login.html')
 
 def lancar(request):
     if request.method == "GET":
         if request.user.is_authenticated:
             return render(request, 'usuarios/lancar.html')
         else:
-            return HttpResponse("Faça o login para acessar!")
+            return render( request, 'usuarios/login.html')
     else:
         livro = Livro()
         livro.nome_usuario = request.user.first_name
@@ -82,7 +82,7 @@ def alterar(request):
             dicionario_livros = {'lista_livros':lista_livros}
             return render(request, 'usuarios/alterar.html', dicionario_livros)
         else:
-            return HttpResponse("Faça o login para acessar!")
+            return render( request, 'usuarios/login.html')
 
 def visualizar(request):
     if request.method == "GET":
@@ -91,7 +91,7 @@ def visualizar(request):
             dicionario_livros = {'lista_livros':lista_livros}
             return render(request, 'usuarios/visualizar.html', dicionario_livros)
         else:
-            return HttpResponse("Faça o login para acessar!")
+            return render( request, 'usuarios/login.html')
     else:
         livro = request.POST.get('livro')
         if livro == "Todos os Livros":
@@ -110,7 +110,7 @@ def excluir_verificacao(request, pk):
             dicionario_livros  = {'lista_livros':lista_livros}
             return render(request, 'usuarios/excluir.html', dicionario_livros)
         else:
-            return HttpResponse("Faça o login para acessar!")
+            return render( request, 'usuarios/login.html')
         
 def excluir(request, pk):
     if request.method == "GET":
@@ -119,7 +119,7 @@ def excluir(request, pk):
             livro_selecionado.delete()
             return HttpResponseRedirect(reverse('alterar'))
         else:
-            return HttpResponse("Faça o login para acessar!")
+            return render( request, 'usuarios/login.html')
             
 
 def editar_verificacao(request, pk):
@@ -129,7 +129,7 @@ def editar_verificacao(request, pk):
             dicionario_livros ={'lista_livros':lista_livros}
             return render(request, 'usuarios/editar.html', dicionario_livros)
     else:
-        return HttpResponse("Faça o login para acessar!")
+        return render( request, 'usuarios/login.html')
     
 def editar(request, pk):
     if request.method == "POST":
@@ -145,4 +145,4 @@ def editar(request, pk):
             return HttpResponseRedirect(reverse('alterar'))
         
     else:
-        return HttpResponse("Faça o login para acessar!")
+        return render( request, 'usuarios/login.html')

@@ -20,7 +20,7 @@
                         <li class="nav-item"><a class="nav-link" href="#!">Sobre</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contado</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
-                        <li  class="nav-item">{{user.email}}</li>
+                        <li  class="nav-item" ><span class="nav-link">{{user.email}}</span></li>
                     </ul>
                 </div>
                 {% endblock %}
