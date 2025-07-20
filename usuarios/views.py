@@ -91,7 +91,7 @@ def visualizar(request):
             dicionario_livros = {'lista_livros':lista_livros}
             return render(request, 'usuarios/visualizar.html', dicionario_livros)
         else:
-            return render( request, 'usuarios/login.html')
+            return render(request, 'usuarios/login.html')
     else:
         livro = request.POST.get('livro')
         if livro == "Todos os Livros":
@@ -144,5 +144,17 @@ def editar(request, pk):
 
             return HttpResponseRedirect(reverse('alterar'))
         
+    else:
+        return render( request, 'usuarios/login.html')
+
+def sobre(request):
+    if request.user.is_authenticated:
+        return render(request, 'usuarios/sobre.html')
+    else:
+        return render( request, 'usuarios/login.html')
+    
+def contato(request):
+    if request.user.is_authenticated:
+        return render(request, 'usuarios/contato.html')
     else:
         return render( request, 'usuarios/login.html')

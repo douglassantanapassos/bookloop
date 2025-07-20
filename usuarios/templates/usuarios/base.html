@@ -9,7 +9,8 @@
 </head>
 <body>
     <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #008000;">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #3030aa;"> -->
+    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #13747d;">
             <div class="container px-5">
                 <a class="navbar-brand" href="{% url 'home' %}">BookLoop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -17,8 +18,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Página inicial</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Sobre</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contado</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}">Sobre</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}">Contado</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                         <li  class="nav-item" ><span class="nav-link">{{user.email}}</span></li>
                     </ul>
@@ -29,44 +30,44 @@
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <!-- Call to Action-->
-            <div class="card text-white my-5 py-4 text-center" style="background-color: #006400;">
+            <div class="card text-white my-5 py-4 text-center " style="background-color: #0c98a5;"> 
                 <div class="card-body"><p class="text-white m-0">{% block titulo %}Seja bem-vindo(a) ao portal BookLoop. Aqui você poderá cadastrar, editar e visualizar livros disponíveis para troca. Promova a leitura e a sustentabilidade!{% endblock %}</p></div>
             </div>
             <!-- Content Row-->
             <div class="row gx-4 gx-lg-5">
                 {% block conteudo %}
                 <div class="col-md-4 mb-5">
-                    <div class="card h-100" style="background-color: #D3D3D3;">
+                    <div class="card h-100" style="background-color: #13747d;">
                         <div class="card-body" style="background-color: #FFFFFF;">
                             <h2 class="card-title">Cadastrar Livros</h2>
                             <p class="card-text">Nesta opção você poderá cadastrar novos livros, informando título, autor, gênero, editora e número de páginas. Torne seu acervo disponível para troca com outros leitores!</p>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'lancar' %}">Clique aqui</a></div>
+                        <div class="card-footer"><a class="btn  btn-sm " style="background-color: #0c98a5; color: #ffffff;" href="{% url 'lancar' %}">Clique aqui</a></div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <div class="card h-100" style="background-color: #D3D3D3;">
+                    <div class="card h-100" style="background-color: #13747d;">
                         <div class="card-body" style="background-color: #FFFFFF;">
                             <h2 class="card-title">Alterar Livros</h2>
                             <p class="card-text">Nesta opção você poderá editar os dados dos livros que já cadastrou, corrigindo informações. Mantenha sua estante sempre organizada.</p>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'alterar' %}">Clique aqui</a></div>
+                        <div class="card-footer"><a class="btn  btn-sm " style="background-color: #0c98a5; color: #ffffff;" href="{% url 'alterar' %}">Clique aqui</a></div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <div class="card h-100" style="background-color: #D3D3D3;">
+                    <div class="card h-100" style="background-color: #13747d;">
                         <div class="card-body" style="background-color: #FFFFFF;">
                             <h2 class="card-title">Visualizar Livros</h2>
                             <p class="card-text">Nesta opção você poderá visualizar todos os livros cadastrados.</p>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'visualizar' %}">Clique aqui</a></div>
+                        <div class="card-footer"><a class="btn  btn-sm " style="background-color: #0c98a5; color: #ffffff;" href="{% url 'visualizar' %}">Clique aqui</a></div>
                     </div>
                 </div>
                 {% endblock %}
             </div>
         </div>
         <!-- Footer-->
-        <footer class="fixed-bottom" style="background-color: #008000;">
+        <footer class="fixed-bottom" style="background-color: #13747d;">
             <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; BookLoop 2025</p></div>
         </footer>
         <!-- Bootstrap core JS-->

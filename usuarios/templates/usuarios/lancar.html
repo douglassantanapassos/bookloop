@@ -6,43 +6,42 @@
 <h3>Cadastro</h3>
 <p class = "lead">Preencha todas as informações.</p>
 <hr>
-  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card border-0 shadow rounded-3 my-5">
-          <div class="card-body p-4 p-sm-5">
-                <form action="{% url 'lancar' %}" method="POST">
-                    {% csrf_token %}
+<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+            <form action="{% url 'lancar' %}" method="POST">
+                {% csrf_token %}
                 
-                    <div class="mb-3 mt-3" style="text-align: center;"> 
-                        <label for="userName">Usuário: </label>
-                        <label for="Name" style="font-weight: bold;">{{user.first_name}} </label>
-                    </div>
-                    <div class="form-floating  mb-3 " >
-                        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="livro" />
-                        <label for="nomeLivro">Nome do Livro</label>
-                    </div>
+                <div class="mb-3 mt-3" style="text-align: center;"> 
+                    <label for="userName">Usuário: </label>
+                    <label for="Name" style="font-weight: bold;">{{user.first_name}} </label>
+                </div>
+                <div class="form-floating  mb-3 " >
+                    <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="livro" />
+                    <label for="nomeLivro">Nome do Livro</label>
+                </div>
                     
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="nome_autor" />
-                        <label for="nomeAutor">Autor: </label>        
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="nome_genero" />
-                        <label for="nomeGenero">Gênero: </label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="nome_editora" />
-                        <label for="nomeEditora">Editora: </label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="num_paginas" />
-                        <label for="numPaginas">Número de Páginas: </label>        
-                    </div>
-                    <div class="form-floating mb-3">
-                    <button type="submit" class="btn btn-primary">Registrar Livros</button>
-                    </div>
-                </form>
-            </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="nome_autor" />
+                    <label for="nomeAutor">Autor: </label>        
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="nome_genero" />
+                    <label for="nomeGenero">Gênero: </label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="nome_editora" />
+                    <label for="nomeEditora">Editora: </label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="xxxxxxxxx" name="num_paginas" />
+                    <label for="numPaginas">Número de Páginas: </label>        
+                </div>
+                <div class="form-floating mb-3">
+                    <button type="submit" class="btn btn-sm" style="background-color: #0c98a5; color: #ffffff;">Registrar Livros</button>
+                </div>
+            </form>
         </div>
     </div>
-    
+</div>
 {% endblock %}

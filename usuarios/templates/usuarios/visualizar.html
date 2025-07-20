@@ -9,17 +9,17 @@
 <hr>
 
 <form action="{% url 'visualizar' %}" method="POST">
-    {% csrf_token%}
+    {% csrf_token %}
 
     <div class="filter">
         <label for="nomeLivro"> Filtrar por livro:</label>
         <select name="livro">
-            <option>Todas os livros</option>
+            <option >Todos os Livros</option>
             {% for campo in lista_livros %}
                 <option >{{ campo.livro }}</option>
             {% endfor %}
         </select>
-        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <button type="submit" class="btn btn-sm" style="background-color: #0c98a5; color: #ffffff;">Filtrar</button>
     </div>
 </form>
 
@@ -35,7 +35,7 @@
         </tr>
         {% for campo in lista_livros %}
             <tr>
-                <td>{{ user.first_name}}</td>
+                <td>{{user.first_name}}</td>
                 <td>{{campo.livro}}</td>
                 <td>{{campo.nome_autor}}</td>
                 <td>{{campo.nome_genero}}</td>
