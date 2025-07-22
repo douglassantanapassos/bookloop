@@ -8,3 +8,4 @@ class Livro(models.Model):
     nome_genero = models.CharField(max_length = 200)
     nome_editora = models.CharField(max_length = 200)
     num_paginas = models.IntegerField(max_length = 5)
+    imagem = models.ImageField(upload_to='livros/', null=True, blank=True)

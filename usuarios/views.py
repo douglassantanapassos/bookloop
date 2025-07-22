@@ -63,8 +63,9 @@ def lancar(request):
         if request.user.is_authenticated:
             return render(request, 'usuarios/lancar.html')
         else:
-            return render( request, 'usuarios/login.html')
-    else:
+            return render(request, 'usuarios/login.html')
+
+    elif request.method == "POST":
         livro = Livro()
         livro.nome_usuario = request.user.first_name
         livro.livro = request.POST.get('livro')
@@ -72,16 +73,23 @@ def lancar(request):
         livro.nome_genero = request.POST.get('nome_genero')
         livro.nome_editora = request.POST.get('nome_editora')
         livro.num_paginas = request.POST.get('num_paginas')
+        livro.imagem = request.FILES.get('imagem')  # <- já está correto!
 
+        # Verifica se já existe livro com esse nome
         livro_verificado = Livro.objects.filter(livro=livro.livro).first()
 
+        # Validação de campos obrigatórios
         if livro_verificado:
             return HttpResponse("Livro já cadastrado!")
-        elif livro.livro == '' and livro.nome_autor =='' and livro.nome_genero == '' and livro.nome_editora == '' and livro.num_paginas == '':            
-            return render( request, 'usuarios/lancar.html')
+        
+        elif not all([livro.livro, livro.nome_autor, livro.nome_genero, livro.nome_editora, livro.num_paginas]):
+            return render(request, 'usuarios/lancar.html', {
+                'erro': 'Preencha todos os campos obrigatórios!'
+            })
+
         else:
             livro.save()
-            return render( request, 'usuarios/home.html')
+            return render(request, 'usuarios/home.html')
 
 
 def alterar(request):
@@ -105,14 +113,14 @@ def visualizar(request):
         if genero:
             livros = livros.filter(nome_genero=genero)
 
-        # ORDENAÇÃO
+        
         ordenar = request.GET.get('ordenar')
         if ordenar == 'titulo':
             livros = livros.order_by(Lower('livro'))
         elif ordenar == 'paginas':
             livros = livros.order_by('num_paginas')
 
-        # Lista única de gêneros
+        
         generos_unicos = Livro.objects.values_list('nome_genero', flat=True).distinct()
 
         contexto = {
@@ -124,29 +132,7 @@ def visualizar(request):
         return render(request, 'usuarios/visualizar.html', contexto)
     else:
         return render(request, 'usuarios/login.html')
-
-
-# def visualizar(request):
-#     if request.user.is_authenticated:
-#         livros = Livro.objects.all()
-
-#         filtro = request.GET.get('filtro')
-
-#         if filtro == 'A-Z':
-#             livros = livros.order_by(Lower('livro'))
-#         elif filtro == 'Páginas':
-#             livros = livros.order_by('num_paginas')
-#         # "Todos os Livros" ou vazio: não altera a ordem
-
-#         contexto = {
-#             'lista_livros': livros,
-#             'filtro_selecionado': filtro,
-#         }
-#         return render(request, 'usuarios/visualizar.html', contexto)
-#     else:
-#         return render(request, 'usuarios/login.html')
-
-        
+    
 def excluir_verificacao(request, pk):
     if request.method == "GET":
         if request.user.is_authenticated:
@@ -184,12 +170,24 @@ def editar(request, pk):
             nome_genero = request.POST.get('nome_genero')
             nome_editora = request.POST.get('nome_editora')
             num_paginas = request.POST.get('num_paginas')
-            Livro.objects.filter(pk=pk).update(nome_usuario=nome_usuario, livro=livro, nome_autor=nome_autor, nome_genero=nome_genero, nome_editora=nome_editora, num_paginas=num_paginas)
 
+            obj = Livro.objects.get(pk=pk)
+            obj.nome_usuario = nome_usuario
+            obj.livro = livro
+            obj.nome_autor = nome_autor
+            obj.nome_genero = nome_genero
+            obj.nome_editora = nome_editora
+            obj.num_paginas = num_paginas
+
+            # Se uma nova imagem for enviada
+            if 'imagem' in request.FILES:
+                obj.imagem = request.FILES['imagem']
+
+            obj.save()
             return HttpResponseRedirect(reverse('alterar'))
-        
-    else:
-        return render( request, 'usuarios/login.html')
+
+    return render(request, 'usuarios/login.html')
+
 
 def sobre(request):
     if request.user.is_authenticated:
