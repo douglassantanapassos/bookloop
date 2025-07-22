@@ -1,18 +1,26 @@
-{% extends 'usuarios/base.html'%}
+{% extends 'usuarios/base.html' %}
 
-{% block aba %}Contatos{%endblock%}
-{% block titulo %}Contatos{%endblock%}
+{% block aba %}Contatos{% endblock %}
+{% block titulo %}Entre em Contato{% endblock %}
+
 {% block conteudo %}
-<hr>
-<div >
-    <div class="card-body p-4 p-sm-5">
-        <ul style="list-style-type: none;">
-            <li><strong>Instagram:</strong> <a href="#">@bookloop.oficial</a></li>
-            <li><strong>E-mail:</strong> <a href="#">contato@bookloop.com.br</a></li>
-            <li><strong>Facebook:</strong> <a href="#">facebook.com/bookloop.oficial</a></li>
-            <li><strong>WhatsApp:</strong> <a href="#">(69) 9 9123-4567</a></li>
-            <li><strong>X:</strong> <a href="#">@bookloop</a></li>
-        </ul>
+<div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-6 mb-4">
+        <div class="card menu-card h-100 shadow-lg border-0 rounded-4 text-center p-4">
+            <div class="card-body d-flex flex-column justify-content-center">
+                <h4 class="card-title mb-4">
+                    <i class="bi bi-envelope-fill me-2"></i>
+                    Nossos Contatos
+                </h4>
+                <ul style="list-style-type: none; padding-left: 0; font-size: 1.1rem;">
+                    <li><strong>Instagram:</strong> @bookloop.oficial</li>
+                    <li><strong>E-mail:</strong> contato@bookloop.com.br</li>
+                    <li><strong>Facebook:</strong> facebook.com/bookloop.oficial</li>
+                    <li><strong>WhatsApp:</strong> (69) 9 9123-4567</li>
+                    <li><strong>X:</strong> @bookloop</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -4,7 +4,9 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django, logout as logout_django
+from django.db.models.functions import Lower
 from .models import Livro
+
 
 def login(request):
     if request.method == "GET":
@@ -91,24 +93,59 @@ def alterar(request):
         else:
             return render( request, 'usuarios/login.html')
 
+from django.db.models.functions import Lower
+from .models import Livro
+
 def visualizar(request):
-    if request.method == "GET":
-        if request.user.is_authenticated:
-            lista_livros = Livro.objects.all()
-            dicionario_livros = {'lista_livros':lista_livros}
-            return render(request, 'usuarios/visualizar.html', dicionario_livros)
-        else:
-            return render(request, 'usuarios/login.html')
+    if request.user.is_authenticated:
+        livros = Livro.objects.all()
+
+        # FILTRO
+        genero = request.GET.get('genero')
+        if genero:
+            livros = livros.filter(nome_genero=genero)
+
+        # ORDENAÇÃO
+        ordenar = request.GET.get('ordenar')
+        if ordenar == 'titulo':
+            livros = livros.order_by(Lower('livro'))
+        elif ordenar == 'paginas':
+            livros = livros.order_by('num_paginas')
+
+        # Lista única de gêneros
+        generos_unicos = Livro.objects.values_list('nome_genero', flat=True).distinct()
+
+        contexto = {
+            'lista_livros': livros,
+            'generos_unicos': generos_unicos,
+            'genero_selecionado': genero,
+            'ordenar_selecionado': ordenar,
+        }
+        return render(request, 'usuarios/visualizar.html', contexto)
     else:
-        livro = request.POST.get('livro')
-        if livro == "Todos os Livros":
-            lista_livros = Livro.objects.all()
-            dicionario_livros = {'lista_livros':lista_livros}
-            return render(request, 'usuarios/visualizar.html', dicionario_livros)   
-        else:
-            lista_livros = Livro.objects.filter(livro = livro)
-            discionario_livros_filtrados = {'lista_livros':lista_livros}
-            return render(request, 'usuarios/visualizar.html', discionario_livros_filtrados)
+        return render(request, 'usuarios/login.html')
+
+
+# def visualizar(request):
+#     if request.user.is_authenticated:
+#         livros = Livro.objects.all()
+
+#         filtro = request.GET.get('filtro')
+
+#         if filtro == 'A-Z':
+#             livros = livros.order_by(Lower('livro'))
+#         elif filtro == 'Páginas':
+#             livros = livros.order_by('num_paginas')
+#         # "Todos os Livros" ou vazio: não altera a ordem
+
+#         contexto = {
+#             'lista_livros': livros,
+#             'filtro_selecionado': filtro,
+#         }
+#         return render(request, 'usuarios/visualizar.html', contexto)
+#     else:
+#         return render(request, 'usuarios/login.html')
+
         
 def excluir_verificacao(request, pk):
     if request.method == "GET":

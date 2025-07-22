@@ -8,20 +8,29 @@
 </h3>
 <hr>
 
-<form action="{% url 'visualizar' %}" method="POST">
-    {% csrf_token %}
-
-    <div class="filter">
-        <label for="nomeLivro"> Filtrar por livro:</label>
-        <select name="livro">
-            <option >Todos os Livros</option>
-            {% for campo in lista_livros %}
-                <option >{{ campo.livro }}</option>
+<form method="get" class="mb-4 d-flex flex-wrap gap-3 align-items-end">
+    <!-- Filtro por Gênero -->
+    <div>
+        <label for="genero" class="fw-bold me-2">Filtrar livro por:</label>
+        <select name="genero" id="genero" class="form-select w-auto" onchange="this.form.submit()">
+            <option value="">Todos os Livros</option>
+            {% for g in generos_unicos %}
+                <option value="{{ g }}" {% if genero_selecionado == g %}selected{% endif %}>{{ g }}</option>
             {% endfor %}
         </select>
-        <button type="submit" class="btn btn-sm" style="background-color: #0c98a5; color: #ffffff;">Filtrar</button>
+    </div>
+
+    <!-- Ordenação -->
+    <div>
+        <label for="ordenar" class="fw-bold me-2">Ordenar por:</label>
+        <select name="ordenar" id="ordenar" class="form-select w-auto" onchange="this.form.submit()">
+            <option value="">Padrão</option>
+            <option value="titulo" {% if ordenar_selecionado == 'titulo' %}selected{% endif %}>A-Z</option>
+            <option value="paginas" {% if ordenar_selecionado == 'paginas' %}selected{% endif %}>Páginas</option>
+        </select>
     </div>
 </form>
+
 
 <div class="table-responsive">
     <table class="table table-striped"> 
