@@ -73,16 +73,14 @@ def lancar(request):
         livro.nome_genero = request.POST.get('nome_genero')
         livro.nome_editora = request.POST.get('nome_editora')
         livro.num_paginas = request.POST.get('num_paginas')
-        livro.imagem = request.FILES.get('imagem')  # <- já está correto!
+        livro.imagem = request.FILES.get('imagem')
 
-        # Verifica se já existe livro com esse nome
         livro_verificado = Livro.objects.filter(livro=livro.livro).first()
 
-        # Validação de campos obrigatórios
         if livro_verificado:
             return HttpResponse("Livro já cadastrado!")
         
-        elif not all([livro.livro, livro.nome_autor, livro.nome_genero, livro.nome_editora, livro.num_paginas]):
+        elif not all([livro.livro, livro.nome_autor, livro.nome_genero, livro.nome_editora, livro.num_paginas, livro.imagem]):
             return render(request, 'usuarios/lancar.html', {
                 'erro': 'Preencha todos os campos obrigatórios!'
             })
